@@ -15,6 +15,10 @@ def parse_args():
     parser = ArgumentParser()
     parser.add_argument('problem_id', type=int)
     parser.add_argument('--field', type=str, help='extract field value')
+    parser.add_argument('--markdown',
+                        type=bool,
+                        default=False,
+                        help='print markdown content')
     parser.add_argument('--context',
                         type=str,
                         help='additional context to lookup')
@@ -43,6 +47,9 @@ def main():
     if not problem:
         sys.exit('Problem Not Found')
 
+    # Add field "url" to problem.
+    problem['url'] = f'https://leetcode.com/problems/{problem["slug"]}/'
+
     if opts.field:
         # Print field value only.
         value = problem.get(opts.field)
@@ -51,7 +58,11 @@ def main():
         print(value)
         return
 
-    print(json.dumps(problem))
+    if opts.markdown is True:
+        print(f'[{problem["id"]} - {problem["title"]}]({problem["url"]})')
+        return
+
+    print(json.dumps(problem, indent=4))
 
 
 if __name__ == '__main__':
