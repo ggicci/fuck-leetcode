@@ -32,7 +32,7 @@ main() {
   local problem_slug="$( "${LOOKUP}" "${number}" --context "${problem_json}" --field "slug" )"
   local problem_difficulty="$( "${LOOKUP}" "${number}" --context "${problem_json}" --field "difficulty" )"
 
-  local problem_dir="${PROJECT_ROOT}/leetcode-${problem_id}"
+  local problem_dir="${PROJECT_ROOT}/leetcode-${problem_id}-${problem_slug}"
   mkdir -p "${problem_dir}"
 
   local solution_py="${problem_dir}/solution.py"
