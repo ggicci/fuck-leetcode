@@ -61,6 +61,10 @@ ${content}
 
   # Format it.
   yapf -vv --style google -i "${solution_py}"
+
+  # Print problem info.
+  "${LOOKUP}" "${number}"
+  "${LOOKUP}" "${number}" "--markdown=1"
 }
 
 main "$@"
