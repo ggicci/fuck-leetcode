@@ -18,7 +18,7 @@ usage() {
 main() {
   local number="${1:-notset}"
 
-  if [[ "${number}" == "" ]]; then
+  if [[ "${number}" == "notset" ]]; then
     usage
     exit 1
   fi
